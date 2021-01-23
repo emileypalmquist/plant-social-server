@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  plant: one
+  name: MyString
+  difficulty: 1
+  moisture: 1
+  indoor: false
+
+two:
+  user: two
+  plant: two
+  name: MyString
+  difficulty: 1
+  moisture: 1
+  indoor: false
