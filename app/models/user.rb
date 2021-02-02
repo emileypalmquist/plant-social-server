@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
     #password encryption
     has_secure_password
+    validates :username, uniqueness: true
 end

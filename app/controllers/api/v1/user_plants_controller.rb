@@ -20,7 +20,7 @@ class Api::V1::UserPlantsController < ApplicationController
     if @user_plant.save
       render json: @user_plant, status: :created, location: @user_plant
     else
-      render json: @user_plant.errors, status: :unprocessable_entity
+      render json: {messages: @user_plant.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
@@ -29,13 +29,14 @@ class Api::V1::UserPlantsController < ApplicationController
     if @user_plant.update(user_plant_params)
       render json: @user_plant
     else
-      render json: @user_plant.errors, status: :unprocessable_entity
+      render json: {messages: @user_plant.errors.full_messages}, status: :unprocessable_entity
     end
   end
 
   # DELETE /user_plants/1
   def destroy
     @user_plant.destroy
+    render json: {messages: ["RIP #{@user_plant.name}"]}
   end
 
   private

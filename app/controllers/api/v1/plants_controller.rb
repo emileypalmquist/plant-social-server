@@ -24,19 +24,6 @@ class Api::V1::PlantsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /plants/1
-  def update
-    if @plant.update(plant_params)
-      render json: @plant
-    else
-      render json: @plant.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /plants/1
-  def destroy
-    @plant.destroy
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    # before_action :authorized
+    before_action :authorized
  
     SECRET = ENV['jwt_secret']
     ALGO = ENV['algo']
@@ -38,6 +38,6 @@ class ApplicationController < ActionController::API
     end
     
     def authorized
-        render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+        render json: { messages: ['Please log in'] }, status: :unauthorized unless logged_in?
     end
 end
