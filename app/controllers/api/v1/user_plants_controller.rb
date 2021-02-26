@@ -1,5 +1,6 @@
 class Api::V1::UserPlantsController < ApplicationController
   before_action :set_user_plant, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index]
 
   # GET /user_plants
   def index
@@ -16,9 +17,8 @@ class Api::V1::UserPlantsController < ApplicationController
   # POST /user_plants
   def create
     @user_plant = UserPlant.new(user_plant_params)
-
     if @user_plant.save
-      render json: @user_plant, status: :created, location: @user_plant
+      render json: {user_plant: UserPlantSerializer.new(@user_plant)}
     else
       render json: {messages: @user_plant.errors.full_messages}, status: :unprocessable_entity
     end
@@ -47,6 +47,6 @@ class Api::V1::UserPlantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_plant_params
-      params.require(:user_plant).permit(:user_id, :plant_id, :name, :difficulty, :moisture, :indoor)
+      params.permit(:user_id, :plant_id, :name, :difficulty, :moisture, :indoor, :photo)
     end
 end

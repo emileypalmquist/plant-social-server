@@ -6,9 +6,12 @@ class User < ApplicationRecord
     #plant species user has
     has_many :plants, through: :user_plants
 
-    #plant species user likes
+    #plant species the user likes
     has_many :favorites, dependent: :destroy
     has_many :favorite_plant_species, through: :favorites, source: :plant
+
+    # #active storage image
+    # has_one_attached :profile_photo
 
     #password encryption
     has_secure_password
