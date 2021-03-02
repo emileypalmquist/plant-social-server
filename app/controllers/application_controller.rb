@@ -2,7 +2,8 @@ class ApplicationController < ActionController::API
     before_action :authorized
  
     SECRET = ENV['jwt_secret']
-    ALGO = ENV['algo']
+    # ALGO = ENV['algo']
+
 
     def encode_token(payload)
         # should store secret in env variable
@@ -19,7 +20,8 @@ class ApplicationController < ActionController::API
         token = auth_header.split(' ')[1]
         # header: { 'Authorization': 'Bearer <token>' }
         begin
-            JWT.decode(token, SECRET, true, algorithm: ALGO)
+            # JWT.decode(token, SECRET, true, algorithm: ALGO)
+            JWT.decode(token, SECRET, true)
         rescue JWT::DecodeError
             nil
         end
