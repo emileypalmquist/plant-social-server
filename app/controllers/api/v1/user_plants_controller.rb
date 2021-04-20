@@ -4,6 +4,8 @@ class Api::V1::UserPlantsController < ApplicationController
 
   # GET /user_plants
   def index
+    # Might want to change this to just plants that are not the logged in user?
+    # need to make ssure that sti
     @user_plants = UserPlant.all
 
     render json: @user_plants

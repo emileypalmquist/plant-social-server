@@ -1,7 +1,7 @@
 class UserPlantSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :difficulty, :indoor, :moisture, :plant, :photo
+  attributes :id, :name, :difficulty, :indoor, :moisture, :plant, :photo, :user_id
   belongs_to :plant
 
   def photo
