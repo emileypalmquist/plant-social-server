@@ -25,6 +25,8 @@ development:
   <<: *default
   database: plant_social_server_development
   host: localhost
+  user: emileymarie
+  password: LoveHimForever5
   
 
   # The specified database role being used to connect to postgres.
@@ -61,6 +63,8 @@ test:
   <<: *default
   database: plant_social_server_test
   host: localhost
+  user: emileymarie
+  password: LoveHimForever5
  
 
 # As with config/credentials.yml, you never want to store sensitive information,
