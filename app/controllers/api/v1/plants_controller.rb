@@ -18,7 +18,7 @@ class Api::V1::PlantsController < ApplicationController
     @plant = Plant.new(plant_params)
 
     if @plant.save
-      render json: @plant, status: :created, location: @plant
+      render json: @plant, status: :created
     else
       render json: @plant.errors, status: :unprocessable_entity
     end

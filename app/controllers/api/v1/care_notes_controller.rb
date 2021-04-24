@@ -18,7 +18,7 @@ class Api::V1::CareNotesController < ApplicationController
     @care_note = CareNote.new(care_note_params)
 
     if @care_note.save
-      render json: @care_note, status: :created, location: @care_note
+      render json: @care_note, status: :created
     else
       render json: @care_note.errors, status: :unprocessable_entity
     end

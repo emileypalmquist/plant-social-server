@@ -4,9 +4,8 @@ class Api::V1::UserPlantsController < ApplicationController
 
   # GET /user_plants
   def index
-    # Might want to change this to just plants that are not the logged in user?
-    # need to make ssure that sti
-    @user_plants = UserPlant.all
+    # reverse the order so newest at front of array
+    @user_plants = UserPlant.order('created_at DESC')
 
     render json: @user_plants
   end

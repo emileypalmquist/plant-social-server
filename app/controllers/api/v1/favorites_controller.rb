@@ -18,7 +18,7 @@ class Api::V1::FavoritesController < ApplicationController
     @favorite_plant = FavoritePlant.new(favorite_plant_params)
 
     if @favorite_plant.save
-      render json: @favorite_plant, status: :created, location: @favorite_plant
+      render json: @favorite_plant, status: :created
     else
       render json: @favorite_plant.errors, status: :unprocessable_entity
     end
