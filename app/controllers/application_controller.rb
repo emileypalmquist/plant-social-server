@@ -31,7 +31,7 @@ class ApplicationController < ActionController::API
     def current_user
         if decoded_token
             user_id = decoded_token[0]['id']
-            @user = User.find_by(id: user_id)
+            @user = User.includes(:favorite_plant_species, user_plants: [:care_notes]).find_by(id: user_id)
         end
     end
     

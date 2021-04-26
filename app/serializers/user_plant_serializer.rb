@@ -3,7 +3,10 @@ class UserPlantSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :difficulty, :indoor, :moisture, :photo, :plant, :user_id, :care_notes
   belongs_to :plant
-  has_many :care_notes
+
+  def care_notes
+    object.care_notes.reverse
+  end
 
   def photo
     if object.photo.attached? 
