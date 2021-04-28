@@ -36,6 +36,7 @@ class Api::V1::CareNotesController < ApplicationController
   # DELETE /care_notes/1
   def destroy
     @care_note.destroy
+    render json: {message: "successfully destroyed care note"}
   end
 
   private

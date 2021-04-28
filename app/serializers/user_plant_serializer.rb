@@ -1,11 +1,15 @@
 class UserPlantSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :name, :difficulty, :indoor, :moisture, :photo, :plant, :user_id, :care_notes
+  attributes :id, :name, :difficulty, :indoor, :moisture, :photo, :plant, :user_id, :care_notes, :comments
   belongs_to :plant
 
   def care_notes
     object.care_notes.reverse
+  end
+
+  def comments
+    object.comments.reverse
   end
 
   def photo
