@@ -36,9 +36,9 @@ class Api::V1::UserPlantsController < ApplicationController
 
   # DELETE /user_plants/1
   def destroy
-    @user_plant.destroy
-  
-    render json: {messages: ["RIP #{@user_plant.name}"]}
+    if @user_plant.destroy
+      render json: {messages: ["RIP #{@user_plant.name}"]}
+    end
   end
 
   private

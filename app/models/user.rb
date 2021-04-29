@@ -10,6 +10,8 @@ class User < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :favorite_plant_species, through: :favorites, source: :plant
 
+    has_many :likes
+
     # #active storage image
     # has_one_attached :profile_photo
 

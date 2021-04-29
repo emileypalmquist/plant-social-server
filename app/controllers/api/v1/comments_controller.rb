@@ -35,8 +35,9 @@ class Api::V1::CommentsController < ApplicationController
 
   # DELETE /comments/1
   def destroy
-    @comment.destroy
-    render json: {message: "Successfully deleted comment!"}
+    if @comment.destroy
+      render json: {message: "Successfully deleted comment!"}
+    end
   end
 
   private

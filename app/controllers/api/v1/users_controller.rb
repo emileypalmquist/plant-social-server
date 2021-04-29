@@ -36,8 +36,9 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
-    render json: {messages: ["Hope to see you again,#{@user.username}"]}
+    if @user.destroy
+      render json: {messages: ["Hope to see you again,#{@user.username}"]}
+    end
   end
 
   private

@@ -3,13 +3,14 @@ class UserPlantSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :difficulty, :indoor, :moisture, :photo, :plant, :user_id, :care_notes, :comments
   belongs_to :plant
+  has_many :likes
 
   def care_notes
-    object.care_notes.reverse
+    ActiveModel::SerializableResource.new(object.care_notes.reverse, each_serializer: CareNoteSerializer)
   end
 
   def comments
-    object.comments.reverse
+    ActiveModel::SerializableResource.new(object.comments.reverse, each_serializer: CommentSerializer)
   end
 
   def photo

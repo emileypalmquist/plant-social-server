@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   namespace :api do
     namespace :v1 do
       resources :comments
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
       resources :user_plants
       resources :favorites
       resources :plants
+      resources :likes
       resources :users
       post '/login', to: 'auth#create'
       get '/re_auth', to: 'auth#re_auth'
