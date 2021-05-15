@@ -24,6 +24,10 @@ class Api::V1::PlantsController < ApplicationController
     end
   end
 
+  def search
+    plants = Plant.where("name like ?", "%#{params[:query]}%")
+    render json: plants
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -33,6 +37,6 @@ class Api::V1::PlantsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def plant_params
-      params.require(:plant).permit(:name, :scientific_name, :trefle_api_id)
+      params.require(:plant).permit(:name)
     end
 end

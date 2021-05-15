@@ -17,11 +17,15 @@ class Api::V1::UserPlantsController < ApplicationController
 
   # POST /user_plants
   def create
-    @user_plant = UserPlant.new(user_plant_params)
-    if @user_plant.save
-      render json: {user_plant: UserPlantSerializer.new(@user_plant)}
+    user_plant = UserPlant.new(user_plant_params)
+    # resized_image = ImageProcessing::MiniMagick.source(params[:photo]).resize_to_fit( 250, 250).call
+    # @user_plant.photo.attach(resized_image)
+    plant = Plant.find_or_create_by(name: params[:plant].downcase)
+    user_plant.plant_id = plant.id
+    if user_plant.save
+      render json: {user_plant: UserPlantSerializer.new(user_plant)}
     else
-      render json: {messages: @user_plant.errors.full_messages}, status: :unprocessable_entity
+      render json: {messages: user_plant.errors.full_messages}, status: :unprocessable_entity
     end
   end
 

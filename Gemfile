@@ -50,3 +50,4 @@ gem 'figaro'
 # activestorage file upload aws
 gem "aws-sdk-s3", require: false
 
+
