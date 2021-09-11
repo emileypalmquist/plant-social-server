@@ -33,6 +33,8 @@ class Api::V1::UserPlantsController < ApplicationController
 
   # PATCH/PUT /user_plants/1
   def update
+    plant = Plant.find_or_create_by(name: params[:plant].downcase)
+    @user_plant.plant_id = plant.id
     if @user_plant.update(user_plant_params)
       render json: @user_plant
     else
