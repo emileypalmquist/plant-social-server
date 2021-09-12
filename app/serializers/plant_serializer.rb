@@ -7,8 +7,5 @@ class PlantSerializer < ActiveModel::Serializer
   def photo
     object.most_liked_user_plant_photo
   end
-
-  def display_care_notes
-  end
   
 end

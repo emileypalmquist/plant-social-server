@@ -33,7 +33,16 @@ class Plant < ApplicationRecord
     end
 
     def care_notes
-        CareNote.where(user_plant_id: user_plants.ids)
+        care_notes = CareNote.where(user_plant_id: user_plants.ids)
+        most_likes = Like.includes(likeable: [:user_plant]).select('id, likeable_id, likeable_type, user_id, count(likeable_id) as cnt')
+            .where(likeable_id: care_notes.ids, likeable_type: 'CareNote')
+            .group('likeable_id, likeable_type, user_id, id').order('cnt DESC').limit(5)
+        if most_likes.length > 0
+            most_likes.map {|l| l.likeable }.uniq
+        else
+            care_notes.limit(5)
+        end
+      
     end
 
 end

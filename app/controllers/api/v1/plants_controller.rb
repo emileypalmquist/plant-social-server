@@ -26,7 +26,7 @@ class Api::V1::PlantsController < ApplicationController
 
   def search
     plants = Plant.where("name like ?", "%#{params[:query]}%")
-    render json: plants
+    render json: plants, each_serializer: nil
   end
 
   private
