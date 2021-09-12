@@ -38,7 +38,12 @@ class Plant < ApplicationRecord
             .where(likeable_id: care_notes.ids, likeable_type: 'CareNote')
             .group('likeable_id, likeable_type, user_id, id').order('cnt DESC').limit(5)
         if most_likes.length > 0
-            most_likes.map {|l| l.likeable }.uniq
+            cns = most_likes.map {|l| l.likeable }.uniq
+            if cns.length < 5
+                ids = cns.map{|cn| cn.id}
+                return cns + care_notes.where.not(id: ids).limit(5 - cns.length)
+            end
+            cns
         else
             care_notes.limit(5)
         end
