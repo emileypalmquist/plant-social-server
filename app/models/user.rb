@@ -12,7 +12,7 @@ class User < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :favorite_plant_species, through: :favorites, source: :plant
 
-    has_many :likes, as: :likeable, dependent: :destroy
+    has_many :likes, dependent: :destroy
 
     # #active storage image
     # has_one_attached :profile_photo
@@ -20,4 +20,8 @@ class User < ApplicationRecord
     #password encryption
     has_secure_password
     validates :username, uniqueness: true
+
+    def likes_user_plants
+        likes.where('likeable_type = ?', 'UserPlant')
+    end
 end

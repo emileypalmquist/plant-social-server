@@ -4,7 +4,7 @@ class UserPlant < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
 
   # notes by owner of this plant
   has_many :care_notes, dependent: :destroy

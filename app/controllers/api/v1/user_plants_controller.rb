@@ -5,7 +5,11 @@ class Api::V1::UserPlantsController < ApplicationController
   # GET /user_plants
   def index
     # reverse the order so newest at front of array
-    @user_plants = UserPlant.order('created_at DESC')
+    if params[:liked]
+      @user_plants = current_user.likes_user_plants.order('created_at DESC')
+    else
+      @user_plants = UserPlant.order('created_at DESC')
+    end
 
     render json: @user_plants
   end
