@@ -1,51 +1,51 @@
 class Api::V1::FavoritesController < ApplicationController
-  before_action :set_favorite_plant, only: [:show, :update, :destroy]
+  before_action :set_favorite, only: [:show, :update, :destroy]
 
-  # GET /favorite_plants
+  # GET /favorites
   def index
-    @favorite_plants = FavoritePlant.all
+    @favorites = Favorite.all
 
-    render json: @favorite_plants
+    render json: @favorites
   end
 
-  # GET /favorite_plants/1
+  # GET /favorites/1
   def show
-    render json: @favorite_plant
+    render json: @favorite
   end
 
-  # POST /favorite_plants
+  # POST /favorites
   def create
-    @favorite_plant = FavoritePlant.new(favorite_plant_params)
+    @favorite = Favorite.new(favorite_params)
 
-    if @favorite_plant.save
-      render json: @favorite_plant, status: :created
+    if @favorite.save
+      render json: @favorite, status: :created
     else
-      render json: @favorite_plant.errors, status: :unprocessable_entity
+      render json: @favorite.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /favorite_plants/1
+  # PATCH/PUT /favorites/1
   def update
-    if @favorite_plant.update(favorite_plant_params)
-      render json: @favorite_plant
+    if @favorite.update(favorite_params)
+      render json: @favorite
     else
-      render json: @favorite_plant.errors, status: :unprocessable_entity
+      render json: @favorite.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /favorite_plants/1
+  # DELETE /favorites/1
   def destroy
-    @favorite_plant.destroy
+    @favorite.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_favorite_plant
-      @favorite_plant = FavoritePlant.find(params[:id])
+    def set_favorite
+      @favorite = Favorite.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def favorite_plant_params
-      params.require(:favorite_plant).permit(:user_id, :plant_id)
+    def favorite_params
+      params.require(:favorite).permit(:user_id, :plant_id)
     end
 end
