@@ -1,5 +1,3 @@
-Certainly! Here's the updated README for the Plant Social Server backend that includes sections for contributing and reporting issues:
-
 # Plant Social Server
 
 Plant Social Server is a Ruby on Rails backend application that serves as the server for the Plant Social Client. It provides API endpoints for creating, retrieving, and managing plant-related data, including user accounts, plant records, care notes, and more.
